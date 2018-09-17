@@ -1,18 +1,24 @@
 ﻿// Thanks to Zenya (https://steamcommunity.com/profiles/76561197980466749) for sharing the 'Profitable Tourism' source, which this mod extends from!
 
-using ICities;
-
+using System.Reflection;
+using ColossalFramework.Plugins;
+using UnityEngine;
+using ICities;
 // !! Do not perform code updates that depend on features from .NET 4 or higher (i.e expression body styles, null coalescing, etc.) !!
 
 namespace CS_Profitable_Offices
 {
     public class ProfitableOfficesMod : IUserMod
     {
+        private string Version
+        {
+            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
         public string Name
         {
             get
             {
-                return "Profitable Offices Mod";
+                return "Profitable Offices Mod (version " + Version + ")";
             }
         }
 
@@ -39,7 +45,6 @@ namespace CS_Profitable_Offices
             ModOptions.Instance.OfficeIncomeMultiplier = ModOptions.OfficeIncomeMultipliers[sel];
             ModOptions.Instance.Save();
         }
-
     }
 }
 
